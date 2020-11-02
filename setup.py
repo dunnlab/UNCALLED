@@ -73,8 +73,8 @@ library_dirs = [
 ]
 
 if CONDA_PREFIX is not None:
-    include_dirs.append(os.path.join(CONDA_PREFIX, "include")
-    library_dirs.append(os.path.join(CONDA_PREFIX, "lib")
+    include_dirs.append(os.path.join(CONDA_PREFIX, "include"))
+    library_dirs.append(os.path.join(CONDA_PREFIX, "lib"))
 
 uncalled = Extension(
     "_uncalled",
