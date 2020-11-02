@@ -121,10 +121,14 @@ setup(
 
     python_requires=">=3.6",
 
-    #setup_requires=[
-    #    'pybind11>=2.5.0', 
-    #    'numpy>=1.12.0'
-    #],
+    setup_requires=[
+        'pybind11>=2.5.0',
+        'read_until_api'
+    ],
+
+    install_requires=[
+        'numpy>=1.12.0'
+    ],
 
     packages=find_packages(),
     include_package_data=True,
