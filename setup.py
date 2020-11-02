@@ -8,6 +8,8 @@ __version__ = "2.1"
 
 ROOT_DIR = os.getcwd()
 
+CONDA_PREFIX = os.environ.get('CONDA_PREFIX')
+
 SUBMOD_DIR = os.path.join(ROOT_DIR, "submods")
 SUBMODS = [
     "bwa", 
@@ -58,6 +60,22 @@ class pre_build(build_ext):
 
         build_ext.run(self)
 
+include_dirs = [
+    "./submods", #TODO: consistent incl paths?
+    "./submods/fast5/include",
+    "./submods/pdqsort",
+    "./submods/toml11",
+    get_pybind_include()
+]
+
+library_dirs = [
+    "./submods/bwa"
+]
+
+if CONDA_PREFIX is not None:
+    include_dirs.append(os.path.join(CONDA_PREFIX, "include")
+    library_dirs.append(os.path.join(CONDA_PREFIX, "lib")
+
 uncalled = Extension(
     "_uncalled",
 
@@ -78,19 +96,8 @@ uncalled = Extension(
        "src/range.cpp"
     ],
 
-    include_dirs = [
-        "./submods", #TODO: consistent incl paths?
-        #"./submods/hdf5/include", 
-        "./submods/fast5/include",
-        "./submods/pdqsort",
-        "./submods/toml11",
-        get_pybind_include()
-    ],
-
-    library_dirs = [
-        "./submods/bwa"
-        #"./submods/hdf5/lib"
-    ],
+    include_dirs = include_dirs,
+    library_dirs = library_dirs,
 
     libraries = ["bwa", "hdf5", "z", "dl", "m"],
 
