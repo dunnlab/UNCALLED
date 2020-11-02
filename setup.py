@@ -123,13 +123,12 @@ setup(
     python_requires=">=3.6",
 
     setup_requires=[
-        'pybind11>=2.5.0',
+        'pybind11 >=2.5.0',
         'read_until'
     ],
 
-    install_requires=[
-        'numpy>=1.12.0'
-    ],
+    #install_requires=[
+    #],
 
     include_package_data=True,
     scripts = ['scripts/uncalled'],
