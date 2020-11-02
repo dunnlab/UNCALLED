@@ -124,7 +124,7 @@ setup(
 
     setup_requires=[
         'pybind11>=2.5.0',
-        'read_until_api'
+        'read_until'
     ],
 
     install_requires=[
