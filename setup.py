@@ -114,6 +114,7 @@ setup(
     author = "Sam Kovaka",
     author_email = "skovaka@gmail.com",
     url = "https://github.com/skovaka/UNCALLED",
+    packages=find_packages(),
 
     classifiers=[
       "Programming Language :: Python :: 3"
@@ -130,7 +131,6 @@ setup(
         'numpy>=1.12.0'
     ],
 
-    packages=find_packages(),
     include_package_data=True,
     scripts = ['scripts/uncalled'],
     ext_modules = [uncalled],
