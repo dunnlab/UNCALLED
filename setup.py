@@ -41,6 +41,7 @@ class pre_build(build_ext):
 
         if not submods_loaded:
             sys.stderr.write("Downloading submodules\n")
+            sys.stderr.flush()
             subprocess.check_call([
                 "git", "submodule", "update", "--init"
             ])
@@ -120,10 +121,10 @@ setup(
 
     python_requires=">=3.6",
 
-    setup_requires=[
-        'pybind11>=2.5.0', 
-        'numpy>=1.12.0'
-    ],
+    #setup_requires=[
+    #    'pybind11>=2.5.0', 
+    #    'numpy>=1.12.0'
+    #],
 
     packages=find_packages(),
     include_package_data=True,
