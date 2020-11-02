@@ -12,7 +12,7 @@ SUBMOD_DIR = os.path.join(ROOT_DIR, "submods")
 SUBMODS = [
     "bwa", 
     "fast5", 
-    "hdf5", 
+    #"hdf5", 
     "pdqsort", 
     "read_until_api", 
     "toml11"
@@ -56,28 +56,6 @@ class pre_build(build_ext):
                  "-f", "../../src/Makefile_bwa"
             ])
 
-        if os.path.exists("./submods/hdf5/lib/libhdf5.a"):
-            sys.stderr.write("Found libhdf5.a\n")
-        else:
-
-            hdf5_dir = os.path.join(ROOT_DIR, "submods/hdf5")
-
-            os.chdir(hdf5_dir)
-
-            subprocess.check_call([
-                "./configure", 
-                    "--enable-threadsafe", 
-                    "--disable-hl",
-                    "--prefix", hdf5_dir,
-                    "--enable-shared=no",
-                    "--with-pic=yes"
-            ])
-
-            subprocess.check_call(["make"])
-            subprocess.check_call(["make", "install"])
-
-            os.chdir(ROOT_DIR)
-
         build_ext.run(self)
 
 uncalled = Extension(
@@ -102,7 +80,7 @@ uncalled = Extension(
 
     include_dirs = [
         "./submods", #TODO: consistent incl paths?
-        "./submods/hdf5/include", 
+        #"./submods/hdf5/include", 
         "./submods/fast5/include",
         "./submods/pdqsort",
         "./submods/toml11",
@@ -110,8 +88,8 @@ uncalled = Extension(
     ],
 
     library_dirs = [
-        "./submods/bwa", 
-        "./submods/hdf5/lib"
+        "./submods/bwa"
+        #"./submods/hdf5/lib"
     ],
 
     libraries = ["bwa", "hdf5", "z", "dl", "m"],
