@@ -16,7 +16,7 @@ SUBMODS = [
     "fast5", 
     #"hdf5", 
     "pdqsort", 
-    "read_until_api", 
+    #"read_until_api", 
     "toml11"
 ]
 
@@ -123,7 +123,10 @@ setup(
     python_requires=">=3.6",
 
     setup_requires=[
-        'pybind11 >=2.5.0',
+        'pybind11>=2.5.0', 
+    ],
+
+    install_requires=[
         'read_until'
     ],
 
